@@ -1,0 +1,102 @@
+/* Form Component */
+
+.bgForm {
+  min-height: 90vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formHead {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+  color: blue;
+  text-decoration: underline;
+  font-family: Bree Serif;
+  margin-bottom: 30px;
+}
+
+.formCont {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.inputCont {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.inputLabel {
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+.inputBox {
+  background-color: transparent;
+  border: 1px solid grey;
+  padding: 10px;
+  width: 90%;
+  cursor: text;
+  outline: none;
+  border-radius: 3px;
+}
+
+.formBtn {
+  cursor: pointer;
+  outline: none;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 5px;
+  text-align: center;
+  align-self: center;
+  height: 35px;
+  width: 100px;
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .bgForm {
+    justify-content: flex-start;
+  }
+
+  .formHead {
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+
+  .formCont {
+    width: 370px;
+    height: 350px;
+  }
+
+  .inputLabel {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .inputCont {
+    margin-bottom: 17px;
+  }
+
+  .formBtn {
+    height: 43px;
+    width: 130px;
+    font-size: 17px;
+    border-radius: 8px;
+  }
+}
