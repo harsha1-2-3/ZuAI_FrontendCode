@@ -30,7 +30,7 @@ class BlogPosts extends Component {
     const response = await fetch(url, options);
     if (response.ok) {
       this.setState({ apiStatus: apiConstants.success });
-      this.getPosts()
+      this.getPosts();
     } else {
       this.setState({ apiStatus: apiConstants.failure });
     }
@@ -103,6 +103,7 @@ class BlogPosts extends Component {
         contentUrl: e.content_url,
         createdAt: e.created_at,
       }));
+      console.log(data);
       this.setState({
         postsList: updatedPosts,
         apiStatus: apiConstants.success,

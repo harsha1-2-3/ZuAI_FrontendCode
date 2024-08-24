@@ -1,5 +1,5 @@
 .bgHom {
-  min-height: 90vh;
+  min-height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -7,7 +7,7 @@
 }
 .addBtn {
   color: white;
-  background-color: violet;
+  background-color: blue;
   font-weight: bolder;
   outline: none;
   text-decoration: none;
@@ -20,19 +20,21 @@
   margin-bottom: 20px;
 }
 .homHead {
-  color: blue;
+  color: blueviolet;
   text-decoration: underline;
-  font-size: 40px;
+  padding: 20px;
+  font-size: 50px;
   font-weight: bold;
   text-align: center;
   font-family: Bree serif;
 }
 .linkBtn {
-  color: white;
-  background-color: blue;
+  color: gainsboro;
+  background-color: blueviolet;
   outline: none;
   text-decoration: none;
   font-weight: bolder;
+  font-size: 15px;
   height: 45px;
   width: 120px;
   border: 0px;
@@ -60,7 +62,7 @@
   font-weight: bold;
   margin: 0px;
   text-align: center;
-  color: blue;
+  color: blueviolet;
   text-decoration: underline;
   font-family: Bree Serif;
   margin-bottom: 30px;

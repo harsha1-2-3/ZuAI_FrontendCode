@@ -24,17 +24,21 @@ const Home = () => {
   const onPostCreate = async () => {
     try {
       const url = `https://zuai-backendcode-2.onrender.com/posts`;
+      const sendingData = {
+        title,
+        content_url: contentUrl,
+        content,
+      };
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          title,
-          contentUrl,
-          content,
-        }),
+
+        body: JSON.stringify(sendingData),
       });
+
+      console.log(sendingData);
 
       if (response.ok) {
         console.log("Post created/updated successfully!");

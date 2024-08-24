@@ -21,7 +21,7 @@
 .postDetails {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 2px solid blue;
   padding: 20px;
 }
 
@@ -40,7 +40,7 @@
   height: 170px;
   width: 280px;
   margin: 0px;
-  border-radius: 5px;
+  border-radius: 2px;
   align-self: center;
   margin-bottom: 10px;
 }
@@ -62,7 +62,7 @@
 
 .editBtn {
   color: white;
-  background-color: grey;
+  background-color: dodgerblue;
   border: 0px;
   cursor: pointer;
   outline: none;
@@ -73,8 +73,9 @@
 }
 
 .contentPara {
-  color: blue;
+  color: darkslategray;
   font-size: 15px;
+  font-weight: 600;
   margin: 0px;
   line-height: 23px;
   margin-bottom: 10px;
@@ -90,7 +91,7 @@
 }
 
 .contactHead {
-  color: violet;
+  color: blueviolet;
   font-size: 17px;
   font-weight: bold;
   margin: 0px;
@@ -137,14 +138,14 @@
 
   .datePara {
     font-size: 18px;
-    margin-left: 15px;
+    margin-left: 20px;
   }
 
   .editBtn {
     height: 35px;
     width: 80px;
     font-size: 18px;
-    margin-right: 15px;
+    margin-right: 20px;
   }
 
   .contentPara {
