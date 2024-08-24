@@ -8,6 +8,7 @@ const apiConstants = {
   initial: "INITIAL",
   success: "SUCCESS",
   loading: "LOADING",
+  updatedForm: "UPDATEFORM",
   failure: "FAILURE",
 };
 
@@ -16,11 +17,26 @@ const PostDetails = () => {
   const [postDetailsObj, setPostDetailsObj] = useState({});
   const { id } = useParams();
 
+  const [title, setTitle] = useState("");
+  const [contentUrl, setcontentUrl] = useState("");
+  const [content, setContent] = useState("");
+
+  const onChangeTitle = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const onChangecontentUrl = (event) => {
+    setcontentUrl(event.target.value);
+  };
+
+  const onChangeContent = (event) => {
+    setContent(event.target.value);
+  };
+
   useEffect(() => {
     const fetchPostDetails = async () => {
       try {
         setApiStatus(apiConstants.loading);
-
         const url = `https://zuai-backendcode-2.onrender.com/posts/${id}`;
         const options = {
           method: "GET",
@@ -37,6 +53,9 @@ const PostDetails = () => {
             createdAt: data.created_at,
           });
           setApiStatus(apiConstants.success);
+          setTitle(data.title);
+          setcontentUrl(data.content_url);
+          setContent(data.content);
         } else {
           setApiStatus(apiConstants.failure);
         }
@@ -51,6 +70,7 @@ const PostDetails = () => {
 
   const onClickEdit = () => {
     console.log("clicked edit");
+    setApiStatus(apiConstants.updatedForm);
   };
 
   const renderSuccessPostDetails = () => {
@@ -97,6 +117,94 @@ const PostDetails = () => {
     );
   };
 
+  const onClickSave = async () => {
+    try {
+      setApiStatus(apiConstants.loading);
+
+      const url = `https://zuai-backendcode-2.onrender.com/posts/${id}`;
+      const options = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          contentUrl,
+          content,
+        }),
+      };
+
+      const response = await fetch(url, options);
+
+      if (response.ok) {
+        setPostDetailsObj({
+          ...postDetailsObj,
+          title,
+          contentUrl,
+          content,
+        });
+        setApiStatus(apiConstants.success);
+      } else {
+        console.error("Error updating post:", await response.text());
+        setApiStatus(apiConstants.failure);
+      }
+    } catch (error) {
+      console.error("Error updating post:", error);
+      setApiStatus(apiConstants.failure);
+    }
+  };
+
+  const renderUpdateForm = () => {
+    return (
+      <>
+        <div className="bgForm">
+          <h1 className="formHead">Update Form</h1>
+          <div className="formCont">
+            <div className="inputCont">
+              <label htmlFor="title" className="inputLabel">
+                Title
+              </label>
+              <input
+                placeholder="Enter Title"
+                type="text"
+                id="title"
+                className="inputBox"
+                onChange={onChangeTitle}
+                value={title}
+              />
+            </div>
+            <div className="inputCont">
+              <label htmlFor="url" className="inputLabel">
+                Image Url
+              </label>
+              <input
+                placeholder="Enter Image Url"
+                type="text"
+                id="url"
+                className="inputBox"
+                onChange={onChangecontentUrl}
+                value={contentUrl}
+              />
+            </div>
+            <div className="inputCont">
+              <label htmlFor="content" className="inputLabel">
+                Content
+              </label>
+              <textarea
+                placeholder="Enter Content"
+                id="content"
+                className="inputBox"
+                onChange={onChangeContent}
+                value={content}
+              />
+            </div>
+            <button onClick={onClickSave} className="formBtn" type="button">
+              Save
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   const renderLoading = () => {
     <div className="loader-container">
       <ThreeDots height="100" width="100" color="#0000000" />
@@ -109,16 +217,25 @@ const PostDetails = () => {
     </div>;
   };
 
+  const renderAllPages = () => {
+    switch (apiStatus) {
+      case apiConstants.success:
+        return renderSuccessPostDetails();
+      case apiConstants.loading:
+        return renderLoading();
+      case apiConstants.updatedForm:
+        return renderUpdateForm();
+      case apiConstants.failure:
+        return renderFailurePostDetails();
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <Header />
-      <div className="bgPostDetails">
-        {apiStatus === apiConstants.success
-          ? renderSuccessPostDetails()
-          : apiStatus === apiConstants.loading
-          ? renderLoading()
-          : renderFailurePostDetails()}
-      </div>
+      <div className="bgPostDetails">{renderAllPages()}</div>
     </>
   );
 };

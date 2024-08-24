@@ -5,34 +5,34 @@ import "./index.css";
 
 const FormFile = () => {
   const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [contentUrl, setcontentUrl] = useState("");
   const [content, setContent] = useState("");
   const { id } = useParams();
+  const [formOrHome, setFormOrHome] = useState("HOME");
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
   };
 
-  const onChangeImageUrl = (event) => {
-    setImageUrl(event.target.value);
+  const onChangecontentUrl = (event) => {
+    setcontentUrl(event.target.value);
   };
 
   const onChangeContent = (event) => {
     setContent(event.target.value);
   };
-  
 
   const onClickCreate = async () => {
     try {
       const url = `https://zuai-backendcode-2.onrender.com/posts/${id}`;
       const response = await fetch(url, {
-        method: "PUT", // Adjust to 'PUT' if updating
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title,
-          imageUrl,
+          contentUrl,
           content,
         }),
       });
@@ -47,11 +47,10 @@ const FormFile = () => {
     }
   };
 
-  return (
-    <>
-      <Header />
+  const renderForm = () => {
+    return (
       <div className="bgForm">
-        <h1 className="formHead">Create/Update Form</h1>
+        <h1 className="formHead">Create Form</h1>
         <div className="formCont">
           <div className="inputCont">
             <label for="title" className="inputLabel">
@@ -75,8 +74,8 @@ const FormFile = () => {
               type="text"
               id="url"
               className="inputBox"
-              onChange={onChangeImageUrl}
-              value={imageUrl}
+              onChange={onChangecontentUrl}
+              value={contentUrl}
             />
           </div>
           <div className="inputCont">
@@ -92,10 +91,17 @@ const FormFile = () => {
             />
           </div>
           <button onClick={onClickCreate} className="formBtn" type="button">
-            Create/Save
+            Create
           </button>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <>
+      <Header />
+      {formOrHome === "FORM" ? renderForm() : renderHome()}
     </>
   );
 };
