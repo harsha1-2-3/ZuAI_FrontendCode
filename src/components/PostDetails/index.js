@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import Header from "../Header";
@@ -49,6 +49,10 @@ const PostDetails = () => {
     fetchPostDetails();
   }, [id]);
 
+  const onClickEdit = () => {
+    console.log("clicked edit");
+  };
+
   const renderSuccessPostDetails = () => {
     return (
       <div className="bgPostDetails">
@@ -56,8 +60,10 @@ const PostDetails = () => {
           <h1 className="pdHead">{postDetailsObj.title}</h1>
           <img className="pdImg" src={postDetailsObj.contentUrl} alt="pdImg" />
           <div className="dateCont">
-            <p className="datePara">Posted On {postDetailsObj.createdAt.split(' ')[0]}</p>
-            <button className="editBtn" type="button">
+            <p className="datePara">
+              Posted On {postDetailsObj.createdAt.split(" ")[0]}
+            </p>
+            <button onClick={onClickEdit} className="editBtn" type="button">
               Edit
             </button>
           </div>

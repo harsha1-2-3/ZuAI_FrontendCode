@@ -1,3 +1,45 @@
 .bgHom {
-  min-height: 100vh;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.addBtn {
+  color: white;
+  background-color: violet;
+  font-weight: bolder;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.homHead {
+  color: blue;
+  text-decoration: underline;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  font-family: Bree serif;
+}
+.linkBtn {
+  color: white;
+  background-color: blue;
+  outline: none;
+  text-decoration: none;
+  font-weight: bolder;
+  height: 45px;
+  width: 120px;
+  border: 0px;
+  border-radius: 8px;
+}
+.linkHome {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }

@@ -21,10 +21,19 @@ class BlogPosts extends Component {
     this.getPosts();
   }
 
-  onClickDelete = (id) => {
-    const { postsList } = this.state;
-    const filteredPosts = postsList.filter((e) => e.id !== id);
-    this.setState({ postsList: filteredPosts });
+  onClickDelete = async (id) => {
+    this.setState({ apiStatus: apiConstants.loading });
+    const url = `https://zuai-backendcode-2.onrender.com/posts/${id}`;
+    const options = {
+      method: "DELETE",
+    };
+    const response = await fetch(url, options);
+    if (response.ok) {
+      this.setState({ apiStatus: apiConstants.success });
+      this.getPosts()
+    } else {
+      this.setState({ apiStatus: apiConstants.failure });
+    }
   };
 
   renderSuccessPosts = () => {
