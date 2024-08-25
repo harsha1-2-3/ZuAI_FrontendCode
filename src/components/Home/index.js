@@ -9,6 +9,10 @@ const Home = () => {
   const [content, setContent] = useState("");
   const [formOrHome, setFormOrHome] = useState("HOME");
 
+  const [isTitleError, setIsTitleError] = useState(false);
+  const [isContentUrlError, setIsContentUrlError] = useState(false);
+  const [isContentError, setIsContentError] = useState(false);
+
   const onChangeTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -23,6 +27,29 @@ const Home = () => {
 
   const onPostCreate = async () => {
     try {
+      let hasErrors = false;
+
+      if (title === "") {
+        setIsTitleError(true);
+        hasErrors = true;
+      } else {
+        setIsTitleError(false);
+      }
+
+      if (contentUrl === "") {
+        setIsContentUrlError(true);
+        hasErrors = true;
+      } else {
+        setIsContentUrlError(false);
+      }
+
+      if (content === "") {
+        setIsContentError(true);
+        hasErrors = true;
+      } else {
+        setIsContentError(false);
+      }
+
       const url = `https://zuai-backendcode-2.onrender.com/posts`;
       const sendingData = {
         title,
@@ -38,11 +65,11 @@ const Home = () => {
         body: JSON.stringify(sendingData),
       });
 
-      console.log(sendingData);
-
       if (response.ok) {
+        if (!hasErrors) {
+          setFormOrHome("HOME");
+        }
         console.log("Post created/updated successfully!");
-        setFormOrHome("HOME");
       } else {
         console.error("Error creating/updating post:", response.statusText);
       }
@@ -56,6 +83,9 @@ const Home = () => {
   };
 
   const renderForm = () => {
+    const titleErrorClass = isTitleError ? "inputBoxError" : "";
+    const contentUrlErrorClass = isContentUrlError ? "inputBoxError" : "";
+    const contentErrorClass = isContentError ? "inputBoxError" : "";
     return (
       <div className="bgForm">
         <h1 className="formHead">Create Form</h1>
@@ -68,10 +98,13 @@ const Home = () => {
               placeholder="Enter Title"
               type="text"
               id="title"
-              className="inputBox"
+              className={`inputBox ${titleErrorClass}`}
               onChange={onChangeTitle}
               value={title}
             />
+            {isTitleError && (
+              <p className="errorMsg">*Entering title required</p>
+            )}
           </div>
           <div className="inputCont">
             <label htmlFor="url" className="inputLabel">
@@ -81,10 +114,13 @@ const Home = () => {
               placeholder="Enter Image Url"
               type="text"
               id="url"
-              className="inputBox"
+              className={`inputBox ${contentUrlErrorClass}`}
               onChange={onChangecontentUrl}
               value={contentUrl}
             />
+            {isContentUrlError && (
+              <p className="errorMsg">*Entering image url required</p>
+            )}
           </div>
           <div className="inputCont">
             <label htmlFor="content" className="inputLabel">
@@ -93,10 +129,13 @@ const Home = () => {
             <textarea
               placeholder="Enter Content"
               id="content"
-              className="inputBox"
+              className={`inputBox ${contentErrorClass}`}
               onChange={onChangeContent}
               value={content}
             />
+            {isContentError && (
+              <p className="errorMsg">*Entering content required</p>
+            )}
           </div>
           <button onClick={onPostCreate} className="formBtn" type="button">
             Createing...

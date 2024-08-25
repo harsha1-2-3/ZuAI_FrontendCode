@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import { FaPencil } from "react-icons/fa6";
 import Header from "../Header";
 import "./index.css";
 
@@ -84,7 +85,7 @@ const PostDetails = () => {
               Posted On {postDetailsObj.createdAt.split(" ")[0]}
             </p>
             <button onClick={onClickEdit} className="editBtn" type="button">
-              Edit
+              Edit <FaPencil className="editIcon" />
             </button>
           </div>
           <p className="contentPara">{postDetailsObj.content}</p>

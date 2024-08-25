@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaTrashCan } from "react-icons/fa6";
 import Header from "../Header";
 import "./index.css";
 
@@ -15,11 +17,26 @@ class BlogPosts extends Component {
   state = {
     apiStatus: apiConstants.initial,
     postsList: [],
+    allPostsList: [],
+    searchInput: "",
   };
 
   componentDidMount() {
     this.getPosts();
   }
+
+  onChangeSearch = (event) => {
+    const eventValue = event.target.value;
+    this.setState({ searchInput: eventValue });
+  };
+
+  onClickSearch = () => {
+    const { searchInput, allPostsList } = this.state;
+    const filteredPosts = allPostsList.filter((each) =>
+      each.title.includes(searchInput)
+    );
+    this.setState({ postsList: filteredPosts });
+  };
 
   onClickDelete = async (id) => {
     this.setState({ apiStatus: apiConstants.loading });
@@ -63,11 +80,7 @@ class BlogPosts extends Component {
               onClick={() => this.onClickDelete(each.id)}
               className="deleteBtn"
             >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUP7TrJfCjHBn3Qhm7A67Go8IogxNZRo6cVh9NszqVXIywWFEkryTn-0wr&s=10"
-                className="deleteIcon"
-                alt="deleteIcon"
-              />
+              <FaTrashCan className="deleteIcon" />
             </button>
           </li>
         ))}
@@ -103,9 +116,9 @@ class BlogPosts extends Component {
         contentUrl: e.content_url,
         createdAt: e.created_at,
       }));
-      console.log(data);
       this.setState({
         postsList: updatedPosts,
+        allPostsList: updatedPosts,
         apiStatus: apiConstants.success,
       });
     } else {
@@ -135,7 +148,24 @@ class BlogPosts extends Component {
       <>
         <Header />
         <div className="bgHome">
-          <h1 className="homeHead">All Posts</h1>
+          <div className="homeHeadCont">
+            <h1 className="homeHead">All Posts</h1>
+            <div className="searchCont">
+              <input
+                className="searchInput"
+                placeholder="Search title..."
+                type="search"
+                onChange={this.onChangeSearch}
+              />
+              <button
+                type="button"
+                onClick={this.onClickSearch}
+                className="searchBtn"
+              >
+                <FaMagnifyingGlass className="searchIcon" />
+              </button>
+            </div>
+          </div>
           {this.renderAllPages()}
         </div>
       </>

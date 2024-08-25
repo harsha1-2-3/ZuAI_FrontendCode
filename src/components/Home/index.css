@@ -101,6 +101,16 @@
   outline: none;
   border-radius: 3px;
 }
+.inputBoxError {
+  border: 1px solid red;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 15px;
+  margin: 0px;
+  margin-top: 3px;
+}
 
 .formBtn {
   cursor: pointer;
@@ -129,7 +139,7 @@
 
   .formCont {
     width: 370px;
-    height: 350px;
+    min-height: 450px;
   }
 
   .inputLabel {
@@ -142,7 +152,7 @@
   }
 
   .formBtn {
-    height: 43px;
+    height: 53px;
     width: 130px;
     font-size: 17px;
     border-radius: 8px;

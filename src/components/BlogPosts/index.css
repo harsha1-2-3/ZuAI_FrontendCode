@@ -1,5 +1,111 @@
 /* Home */
 
+/* new features */
+.homeHeadCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.homeHead {
+  color: blue;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+  text-decoration: underline;
+  font-family: Bree Serif;
+}
+
+.searchCont {
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 0px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.searchInput {
+  border: 0px;
+  background-color: transparent;
+  cursor: text;
+  outline: none;
+  padding: 7px;
+  font-weight: bolder;
+  margin: 0px;
+}
+
+.searchBtn {
+  background-color: transparent;
+  border: 0px;
+  padding: 7px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  margin: 0px;
+}
+
+.searchIcon {
+  font-size: 17px;
+  height: 17px;
+  width: 17px;
+  margin: 3px;
+  color: red;
+}
+
+.deleteIcon {
+  font-size: 30px;
+  color: red;
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  background-color: transparent;
+}
+
+.editIcon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: white;
+  background-color: transparent;
+  margin: 0px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+.editBtn {
+  color: white;
+  background-color: grey;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .homeHeadCont {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .searchCont {
+    align-self: flex-start;
+    margin-top: 15px;
+  }
+}
+/**/
 .bgHome {
   min-height: 90vh;
   display: flex;

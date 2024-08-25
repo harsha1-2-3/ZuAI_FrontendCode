@@ -1,4 +1,31 @@
 /* Post Details */
+.editIcon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: white;
+  background-color: transparent;
+  margin: 0px;
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+.editBtn {
+  color: white;
+  background-color: grey;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .failCont {
   display: flex;
   flex-direction: column;
@@ -58,18 +85,6 @@
   color: grey;
   font-size: 12px;
   margin: 0px;
-}
-
-.editBtn {
-  color: white;
-  background-color: dodgerblue;
-  border: 0px;
-  cursor: pointer;
-  outline: none;
-  font-weight: bold;
-  height: 25px;
-  width: 50px;
-  border-radius: 5px;
 }
 
 .contentPara {
