@@ -26,55 +26,59 @@ const Home = () => {
   };
 
   const onPostCreate = async () => {
-    try {
-      let hasErrors = false;
+    let hasErrors = false;
 
-      if (title === "") {
-        setIsTitleError(true);
-        hasErrors = true;
-      } else {
-        setIsTitleError(false);
-      }
+    if (title.trim() === "") {
+      setIsTitleError(true);
+      hasErrors = true;
+    } else {
+      setIsTitleError(false);
+    }
 
-      if (contentUrl === "") {
-        setIsContentUrlError(true);
-        hasErrors = true;
-      } else {
-        setIsContentUrlError(false);
-      }
+    if (contentUrl.trim() === "") {
+      setIsContentUrlError(true);
+      hasErrors = true;
+    } else {
+      setIsContentUrlError(false);
+    }
 
-      if (content === "") {
-        setIsContentError(true);
-        hasErrors = true;
-      } else {
-        setIsContentError(false);
-      }
+    if (content.trim() === "") {
+      setIsContentError(true);
+      hasErrors = true;
+    } else {
+      setIsContentError(false);
+    }
 
-      const url = `https://zuai-backendcode-2.onrender.com/posts`;
-      const sendingData = {
-        title,
-        content_url: contentUrl,
-        content,
-      };
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    if (!hasErrors) {
+      try {
+        const url = `https://zuai-backendcode-2.onrender.com/posts`;
+        const sendingData = {
+          title,
+          content_url: contentUrl,
+          content,
+        };
 
-        body: JSON.stringify(sendingData),
-      });
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(sendingData),
+        });
 
-      if (response.ok) {
-        if (!hasErrors) {
+        if (response.ok) {
           setFormOrHome("HOME");
+          console.log("Post created successfully!");
+        } else {
+          console.error("Error creating post:", response.statusText);
         }
-        console.log("Post created/updated successfully!");
-      } else {
-        console.error("Error creating/updating post:", response.statusText);
+      } catch (error) {
+        console.error("Error creating post:", error);
       }
-    } catch (error) {
-      console.error("Error creating/updating post:", error);
+    } else {
+      console.log(
+        "Validation failed, post creation halted. Please fill in all fields."
+      );
     }
   };
 
@@ -149,7 +153,9 @@ const Home = () => {
     return (
       <>
         <div className="bgHom">
-          <h1 className="homHead">Posts Assignment by ZuAI Compoany</h1>
+          <h1 className="homHead">
+            Posts Assignment by <br /> <span>ZuAI Compoany</span>
+          </h1>
           <button type="button" onClick={onClickCreate} className="addBtn">
             Create Post
           </button>

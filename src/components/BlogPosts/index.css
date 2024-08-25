@@ -19,7 +19,7 @@
 }
 
 .searchCont {
-  border: 1px solid grey;
+  border: 2px solid blue;
   border-radius: 5px;
   margin: 0px;
   background-color: transparent;
@@ -53,43 +53,7 @@
   height: 17px;
   width: 17px;
   margin: 3px;
-  color: red;
-}
-
-.deleteIcon {
-  font-size: 30px;
-  color: red;
-  height: 30px;
-  width: 30px;
-  margin: 0px;
-  background-color: transparent;
-}
-
-.editIcon {
-  font-size: 16px;
-  height: 16px;
-  width: 16px;
-  color: white;
-  background-color: transparent;
-  margin: 0px;
-  margin-left: 5px;
-  margin-bottom: 2px;
-}
-
-.editBtn {
-  color: white;
-  background-color: grey;
-  border: 0px;
-  cursor: pointer;
-  outline: none;
-  font-weight: bold;
-  height: 30px;
-  width: 60px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  color: grey;
 }
 
 @media (min-width: 768px) {
@@ -185,12 +149,14 @@
 }
 
 .deleteIcon {
-  color: black;
+  font-size: 30px;
+  color: red;
   height: 30px;
   width: 30px;
   margin: 0px;
   background-color: transparent;
 }
+
 
 .failCont {
   display: flex;
@@ -214,7 +180,7 @@
 
 @media (min-width: 768px) {
   .homeHead {
-    font-size: 50px;
+    font-size: 55px;
     margin-bottom: 40px;
   }
 

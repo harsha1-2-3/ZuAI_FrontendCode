@@ -33,7 +33,7 @@ class BlogPosts extends Component {
   onClickSearch = () => {
     const { searchInput, allPostsList } = this.state;
     const filteredPosts = allPostsList.filter((each) =>
-      each.title.includes(searchInput)
+      each.title.toLowerCase().includes(searchInput)
     );
     this.setState({ postsList: filteredPosts });
   };
@@ -48,6 +48,7 @@ class BlogPosts extends Component {
     if (response.ok) {
       this.setState({ apiStatus: apiConstants.success });
       this.getPosts();
+      console.log("Post deleted successfully");
     } else {
       this.setState({ apiStatus: apiConstants.failure });
     }
@@ -57,34 +58,40 @@ class BlogPosts extends Component {
     const { postsList } = this.state;
 
     return (
-      <ul className="postsUl">
-        {postsList.map((each) => (
-          <li key={each.id} className="postLi">
-            <Link to={`/posts/${each.id}`} className="linkHeadCont">
-              <div className="textImgCont">
-                <img
-                  src={each.contentUrl}
-                  className="postLiImg"
-                  alt="postLiImg"
-                />
-                <div className="postLiTextCont">
-                  <h1 className="postLiHead">{each.title}</h1>
-                  <p className="postLiPara">
-                    Posted On {each.createdAt.split(" ")[0]}
-                  </p>
-                </div>
-              </div>
-            </Link>
-            <button
-              type="button"
-              onClick={() => this.onClickDelete(each.id)}
-              className="deleteBtn"
-            >
-              <FaTrashCan className="deleteIcon" />
-            </button>
-          </li>
-        ))}
-      </ul>
+      <>
+        {postsList.length === 0 ? (
+          <h1>Its Empty!!!</h1>
+        ) : (
+          <ul className="postsUl">
+            {postsList.map((each) => (
+              <li key={each.id} className="postLi">
+                <Link to={`/posts/${each.id}`} className="linkHeadCont">
+                  <div className="textImgCont">
+                    <img
+                      src={each.contentUrl}
+                      className="postLiImg"
+                      alt="postLiImg"
+                    />
+                    <div className="postLiTextCont">
+                      <h1 className="postLiHead">{each.title}</h1>
+                      <p className="postLiPara">
+                        Posted On {each.createdAt.split(" ")[0]}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => this.onClickDelete(each.id)}
+                  className="deleteBtn"
+                >
+                  <FaTrashCan className="deleteIcon" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
     );
   };
 
@@ -121,6 +128,7 @@ class BlogPosts extends Component {
         allPostsList: updatedPosts,
         apiStatus: apiConstants.success,
       });
+      console.log("Got all posts successfully");
     } else {
       this.setState({
         apiStatus: apiConstants.failure,

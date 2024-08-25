@@ -94,13 +94,14 @@
 
 .inputBox {
   background-color: transparent;
-  border: 1px solid grey;
+  border: 1px solid blue;
   padding: 10px;
   width: 90%;
   cursor: text;
   outline: none;
   border-radius: 3px;
 }
+
 .inputBoxError {
   border: 1px solid red;
 }
@@ -126,6 +127,11 @@
   width: 100px;
   margin-top: 20px;
 }
+span{
+  color: blue;
+  font-size: 60px;
+  font-family: Bree Serif;
+}
 
 @media (min-width: 768px) {
   .bgForm {
@@ -139,7 +145,7 @@
 
   .formCont {
     width: 370px;
-    min-height: 450px;
+    min-height: 400px;
   }
 
   .inputLabel {

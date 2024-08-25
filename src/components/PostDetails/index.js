@@ -57,6 +57,7 @@ const PostDetails = () => {
           setTitle(data.title);
           setcontentUrl(data.content_url);
           setContent(data.content);
+          console.log("Got the specific post");
         } else {
           setApiStatus(apiConstants.failure);
         }
@@ -142,6 +143,7 @@ const PostDetails = () => {
           contentUrl,
           content,
         });
+        console.log("Specific post updated successfully");
         setApiStatus(apiConstants.success);
       } else {
         console.error("Error updating post:", await response.text());
