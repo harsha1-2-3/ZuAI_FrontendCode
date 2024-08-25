@@ -1,7 +1,3 @@
-Here's a template for a README file for a project that performs CRUD operations on posts and blogs. You can customize the details as needed for your specific project:
-
----
-
 # Project Name
 
 ZuAI Assignment on Posts.
