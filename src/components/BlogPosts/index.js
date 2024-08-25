@@ -33,7 +33,7 @@ class BlogPosts extends Component {
   onClickSearch = () => {
     const { searchInput, allPostsList } = this.state;
     const filteredPosts = allPostsList.filter((each) =>
-      each.title.toLowerCase().includes(searchInput)
+      each.title.toLowerCase().includes(searchInput.toLowerCase())
     );
     this.setState({ postsList: filteredPosts });
   };
